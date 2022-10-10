@@ -28,6 +28,7 @@ public class Movement : MonoBehaviour
 
         else MovePlayer(movementVector.normalized);
     }
+
     private void MovePlayer(Vector2 playerInput)
     {
         rigidBody.velocity = playerInput * playerSpeed;
