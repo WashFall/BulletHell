@@ -1,0 +1,5 @@
+Project Log: "Not Dead Yet" (WORKING TITLE)
+
+2022-10-10
+    I have implemented a basic movement script for the player character.
+    
