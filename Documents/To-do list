@@ -3,5 +3,6 @@ To-do list: "Not Dead Yet"
 Week 1 2022-10-10 - 2022-10-14
     - Make the player character move. X
     - Make a simple enemy. 
+    - Make the Camera follow the player. 
     - Make at least one player attack. 
     - Finish a game loop. 
