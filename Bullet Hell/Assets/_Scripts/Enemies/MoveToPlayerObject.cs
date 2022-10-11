@@ -19,7 +19,6 @@ public class MoveToPlayerObject : MonoBehaviour
     {
         transform.position = Vector2.MoveTowards
             (transform.position, playerObject.transform.position, Time.fixedDeltaTime * speed);
-        print(rigidBody.velocity);
     }
 
     private void OnCollisionExit2D(Collision2D collision)
