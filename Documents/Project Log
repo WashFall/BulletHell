@@ -2,4 +2,10 @@ Project Log: "Not Dead Yet"
 
 2022-10-10
    - I have implemented a basic movement script for the player character.
-   - 
+   - I added an enemy that travels towards the player.
+
+2022-10-11
+   - I fixed a bug that made the enemy gain velocity when colliding with player.
+   - I made an attack that locks on to the closest enemy. 
+   - I made a GameManager that holds a list of all the enemies.
+   - I gave the enemies a basic health system.
