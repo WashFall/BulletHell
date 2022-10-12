@@ -8,24 +8,30 @@ public class MindMissile : MonoBehaviour
     public GameObject target;
     float damage = 1;
     float speed = 5;
+    Vector3 originalSize;
 
     private void Awake()
+    {
+        originalSize = transform.localScale;
+    }
+
+    private void OnEnable()
     {
         float pointAdjustment = GameManager.Instance.points / 10;
 
         damage += pointAdjustment;
-        transform.localScale *= (1 + pointAdjustment);
+        transform.localScale = originalSize * (1 + pointAdjustment);
     }
 
     private void FixedUpdate()
     {
         if(target != null)
         {
-            //var targetSpeed = Mathf.Abs((transform.position - target.transform.position).sqrMagnitude);
-            //Vector3 center = (transform.position + target.transform.position) * 0.5f;
-            //Vector3 startPos = transform.position - center;
-            //Vector3 endPos = target.transform.position - center;
             transform.position = Vector3.Slerp(transform.position, target.transform.position, Time.fixedDeltaTime * speed);
+        }
+        else if(target == null)
+        {
+            gameObject.SetActive(false);
         }
     }
 
@@ -33,7 +39,6 @@ public class MindMissile : MonoBehaviour
     {
         if (!collision.CompareTag("Enemy")) return;
         collision.gameObject.GetComponent<Enemy>().TakeDamage(damage);
-        print(damage);
-        Destroy(this.gameObject, 0.1f);
+        gameObject.SetActive(false);
     }
 }

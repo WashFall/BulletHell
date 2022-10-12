@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Points : MonoBehaviour
 {
-    public int value = 1;
+    public float value = 1;
     public bool isInRange = false;
-    private int speed = 7;
+    private float speed = 7;
 
     private void Update()
     {
@@ -16,6 +16,7 @@ public class Points : MonoBehaviour
                 Vector3.Lerp(transform.position, 
                 GameManager.Instance.player.transform.position, 
                 Time.deltaTime * speed);
+            speed += 0.01f;
         }
     }
 }

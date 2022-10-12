@@ -9,3 +9,8 @@ Project Log: "Not Dead Yet"
    - I made an attack that locks on to the closest enemy. 
    - I made a GameManager that holds a list of all the enemies.
    - I gave the enemies a basic health system.
+
+2022-10-12
+   - I made a spawner for the enemies, and now they spawn off the screen.
+   - I made a point system that affects the player projectiles.
+   - I made an Object Pool for the missiles, that adds more if needed.
