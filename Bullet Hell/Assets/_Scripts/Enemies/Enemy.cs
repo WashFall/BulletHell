@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    private int health = 2;
+    private float health = 2;
     private SpriteRenderer spriteRenderer;
     private Color spriteColor;
     private bool canDie;
+    public GameObject point;
 
     void Start()
     {
@@ -21,9 +22,9 @@ public class Enemy : MonoBehaviour
         GameManager.Instance?.enemies.Remove(this.gameObject);
     }
 
-    public void TakeDamage()
+    public void TakeDamage(float damage)
     {
-        health--;
+        health -= damage;
         StartCoroutine(nameof(DamageFlash));
     }
 
@@ -37,6 +38,10 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        if(canDie) Destroy(gameObject);
+        if (canDie)
+        {
+            Instantiate(point, transform.position, Quaternion.identity);
+            Destroy(gameObject);
+        }
     }
 }

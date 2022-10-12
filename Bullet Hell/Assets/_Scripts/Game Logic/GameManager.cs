@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     public List<GameObject> enemies = new List<GameObject>();
+    public GameObject player;
+    public float points;
 
     private void Awake()
     {
