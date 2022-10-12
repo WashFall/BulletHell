@@ -5,17 +5,13 @@ using UnityEngine;
 
 public class MindMissile : MonoBehaviour
 {
-    GameObject target;
+    public GameObject target;
 
     float speed = 5;
 
     private void Awake()
     {
-        List<GameObject> list = new List<GameObject>();
-        list = GameManager.Instance.enemies
-            .OrderBy(enemy => (enemy.transform.position - transform.position).sqrMagnitude).ToList();
-
-        target = list[0];
+        
     }
 
     private void FixedUpdate()

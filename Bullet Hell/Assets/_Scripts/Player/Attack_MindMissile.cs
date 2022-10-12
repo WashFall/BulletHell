@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Attack_MindMissile : MonoBehaviour
@@ -7,6 +8,7 @@ public class Attack_MindMissile : MonoBehaviour
     public GameObject mindMissilePrefab;
     private GameObject playerObject;
     private bool canShoot = true;
+    private float range = 5;
 
     void Start()
     {
@@ -26,8 +28,18 @@ public class Attack_MindMissile : MonoBehaviour
     private IEnumerator FireMissile()
     {
         yield return new WaitForSeconds(1);
-        if(GameManager.Instance.enemies.Count > 0)
-            Instantiate(mindMissilePrefab, playerObject.transform.position, Quaternion.identity);
+        List<GameObject> closestEnemies = new List<GameObject>();
+        closestEnemies = GameManager.Instance.enemies
+            .OrderBy(enemy => (enemy.transform.position - transform.position).sqrMagnitude).ToList();
+
+        if(closestEnemies.Any())
+        {
+            if (Vector2.Distance(transform.position, closestEnemies[0].transform.position) < range)
+            {
+                GameObject projectile = Instantiate(mindMissilePrefab, playerObject.transform.position, Quaternion.identity);
+                projectile.GetComponent<MindMissile>().target = closestEnemies[0];
+            }
+        }
         canShoot = true;
     }
 }
