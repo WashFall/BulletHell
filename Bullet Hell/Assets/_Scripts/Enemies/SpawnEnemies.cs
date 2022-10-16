@@ -21,6 +21,7 @@ public class SpawnEnemies : MonoBehaviour
         {
             canSpawn = false;
             StartCoroutine(nameof(spawnEnemy));
+            spawnRate = 1 - GameManager.Instance.timer / 100;
         }
     }
 

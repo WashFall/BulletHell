@@ -17,9 +17,9 @@ public class MindMissile : MonoBehaviour
 
     private void OnEnable()
     {
-        float pointAdjustment = GameManager.Instance.points / 10;
+        float pointAdjustment = GameManager.Instance.points / 30;
 
-        damage += pointAdjustment;
+        damage = 1 + pointAdjustment;
         transform.localScale = originalSize * (1 + pointAdjustment);
     }
 

@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour
     public List<GameObject> enemies = new List<GameObject>();
     public GameObject player;
     public float points;
+    public float timer;
+    public GameObject restartButton;
+    private int health = 3;
 
     private void Awake()
     {
@@ -20,10 +23,23 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
         }
+
+        player.GetComponent<Player>().playerTakeDamage += TakeDamage;
     }
 
-    private void Start()
+    private void FixedUpdate()
     {
-        
+        timer = Time.timeSinceLevelLoad;
+
+        if(timer >= 60 || health <= 0)
+        {
+            Time.timeScale = 0;
+            restartButton.SetActive(true);
+        }
+    }
+
+    private void TakeDamage()
+    {
+        health--;
     }
 }

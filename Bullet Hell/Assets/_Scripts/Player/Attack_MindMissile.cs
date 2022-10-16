@@ -12,6 +12,7 @@ public class Attack_MindMissile : MonoBehaviour
     private float amountOfMissiles = 30;
     public List<GameObject> mindMissiles = new List<GameObject>();
     private float fireRate = 1;
+    private float fireRateMultiplier = 0;
 
     void Start()
     {
@@ -29,8 +30,11 @@ public class Attack_MindMissile : MonoBehaviour
         if (canShoot)
         {
             canShoot = false;
-            fireRate = 0.01f;
+            if (GameManager.Instance.points % 10 == 0)
+                fireRateMultiplier = GameManager.Instance.points / 100;
+            fireRate = 1 - fireRateMultiplier;
             StartCoroutine(nameof(FireMissile));
+            print(fireRate);
         }
     }
 

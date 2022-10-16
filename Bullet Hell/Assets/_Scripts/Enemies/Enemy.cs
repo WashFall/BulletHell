@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    private float health = 100;
+    private float health = 2;
     private SpriteRenderer spriteRenderer;
     private Color spriteColor;
     private bool canDie;
