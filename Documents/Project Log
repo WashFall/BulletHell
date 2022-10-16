@@ -14,3 +14,10 @@ Project Log: "Not Dead Yet"
    - I made a spawner for the enemies, and now they spawn off the screen.
    - I made a point system that affects the player projectiles.
    - I made an Object Pool for the missiles, that adds more if needed.
+
+2022-10-16
+   - I fixed some variables regarding damage and size of bullets.
+   - I made a timer for the game loop. You now finish the game after a minute.
+   - I made spawn rate of enemies connect to timer.
+   - I added health to the player. When 0 the game ends.
+   - I added a canvas with score and timer. Also a retry-button.
