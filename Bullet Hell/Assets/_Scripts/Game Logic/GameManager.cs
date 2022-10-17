@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using static UnityEngine.Rendering.VirtualTexturing.Debugging;
 
@@ -11,6 +13,8 @@ public class GameManager : MonoBehaviour
     public float points;
     public GameObject playerObject;
     public GameObject restartButton;
+    public ScriptableObject characterObject;
+    public Character character;
     public List<GameObject> enemies = new List<GameObject>();
 
     private Color spriteColor;
@@ -27,6 +31,8 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
         }
+        //characterObject = ScriptableObject.CreateInstance("Character");
+        //character = characterObject.;
     }
 
     private void Start()

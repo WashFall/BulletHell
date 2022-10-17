@@ -27,7 +27,8 @@ public class MindMissile : MonoBehaviour
     {
         if(target != null)
         {
-            transform.position = Vector3.Slerp(transform.position, target.transform.position, Time.fixedDeltaTime * speed);
+            transform.position = Vector3.Slerp(transform.position, 
+                target.transform.position, Time.fixedDeltaTime * speed);
         }
         else if(target == null)
         {

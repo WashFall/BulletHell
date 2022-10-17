@@ -25,3 +25,5 @@ Project Log: "Not Dead Yet"
 2022-10-17
    - I added a damage flash to player and a second of invincibility.
    - I made the points that drop not collide with anything except the player.
+   - I made character stats scriptable object class.
+   - I broke Attack_MindMissile out of Monobehaviour.

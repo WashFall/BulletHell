@@ -6,16 +6,29 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public delegate void UpdateDelegate();
+    public UpdateDelegate updateDelegate;
+
+    private Character characterStats;
     public float health = 3;
+    public GameObject mindMissilePrefab;
     private bool canTakeDamage = true;
     private SpriteRenderer spriteRenderer;
     private Color spriteColor;
+    private Attack_MindMissile mindMissile;
 
     void Start()
     {
+        characterStats = GameManager.Instance?.character;
         GameManager.Instance.playerObject = this.gameObject;
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         spriteColor = spriteRenderer.color;
+        mindMissile = new Attack_MindMissile(this, gameObject, mindMissilePrefab);
+    }
+
+    private void Update()
+    {
+        updateDelegate?.Invoke();
     }
 
     private async void OnCollisionEnter2D(Collision2D collision)

@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 4403346215849126434}
   - component: {fileID: 3983258270700902163}
   - component: {fileID: 3983258270700902175}
-  - component: {fileID: 3983258270700902172}
   - component: {fileID: 3523926241561785555}
   - component: {fileID: 4329861073174318692}
   m_Layer: 0
@@ -156,19 +155,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff35438038b3e1f449e1fa6dfd61b632, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3983258270700902172
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3983258270700902162}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 751327c28fd68b64692b95b80cd2701d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mindMissilePrefab: {fileID: 5702438710313046666, guid: 3a42607f9f297a14680a7ed4c280bd79, type: 3}
 --- !u!114 &3523926241561785555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,3 +179,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2081eedbb62f10b4f833b679506b9936, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 3
+  mindMissilePrefab: {fileID: 5702438710313046666, guid: 3a42607f9f297a14680a7ed4c280bd79, type: 3}

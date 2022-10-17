@@ -1,31 +1,43 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using UnityEngine;
 
-public class Attack_MindMissile : MonoBehaviour
+public class Attack_MindMissile 
 {
-    public GameObject mindMissilePrefab;
-    private GameObject playerObject;
-    private bool canShoot = true;
-    private float range = 5;
-    private float amountOfMissiles = 30;
     public List<GameObject> mindMissiles = new List<GameObject>();
+
+    private float range = 5;
+    private Player playerClass;
     private float fireRate = 1;
+    private bool canShoot = true;
+    private GameObject playerObject;
+    private float amountOfMissiles = 30;
+    private GameObject mindMissilePrefab;
     private float fireRateMultiplier = 0;
 
-    void Start()
+    public Attack_MindMissile(Player playerClass, GameObject playerObject, GameObject mindMissile)
     {
-        playerObject = this.gameObject;
+        this.playerObject = playerObject;
+        this.playerClass = playerClass;
+        this.mindMissilePrefab = mindMissile;
+        GenerateMissilePool();
+        playerClass.updateDelegate += Update;
+    }
+
+    void GenerateMissilePool()
+    {
         for(int i = 0; i < amountOfMissiles; i++)
         {
-            GameObject missile = Instantiate(mindMissilePrefab, transform.position, Quaternion.identity);
+            GameObject missile = GameObject.Instantiate(mindMissilePrefab, 
+                playerObject.transform.position, Quaternion.identity);
             mindMissiles.Add(missile);
             missile.SetActive(false);
         }
     }
 
-    private void Update()
+    private async void Update()
     {
         if (canShoot)
         {
@@ -33,26 +45,34 @@ public class Attack_MindMissile : MonoBehaviour
             if (GameManager.Instance.points % 10 == 0)
                 fireRateMultiplier = GameManager.Instance.points / 100;
             fireRate = 1 - fireRateMultiplier;
-            StartCoroutine(nameof(FireMissile));
+            await FireMissile();
         }
     }
 
-    private IEnumerator FireMissile()
+    private async Task FireMissile()
     {
-        yield return new WaitForSeconds(fireRate);
+        float startTime = Time.time;
+        float currentTime = startTime;
+
+        while(currentTime < startTime + fireRate)
+        {
+            currentTime = Time.time;
+            await Task.Yield();
+        }
+
         List<GameObject> closestEnemies = new List<GameObject>();
         closestEnemies = GameManager.Instance.enemies
-            .OrderBy(enemy => (enemy.transform.position - transform.position).sqrMagnitude).ToList();
+            .OrderBy(enemy => (enemy.transform.position - playerObject.transform.position).sqrMagnitude).ToList();
 
         if(closestEnemies.Any())
         {
-            if (Vector2.Distance(transform.position, closestEnemies[0].transform.position) < range)
+            if (Vector2.Distance(playerObject.transform.position, closestEnemies[0].transform.position) < range)
             {
                 GameObject projectile = mindMissiles.FirstOrDefault(missile => !missile.gameObject.activeSelf);
 
                 projectile ??= ExtraMissileForPool();
 
-                projectile.transform.position = transform.position;
+                projectile.transform.position = playerObject.transform.position;
                 projectile.GetComponent<MindMissile>().target = closestEnemies[0];
                 projectile.SetActive(true);
             }
@@ -62,7 +82,8 @@ public class Attack_MindMissile : MonoBehaviour
 
     private GameObject ExtraMissileForPool()
     {
-        GameObject extraMissile = Instantiate(mindMissilePrefab, transform.position, Quaternion.identity);
+        GameObject extraMissile = GameObject.Instantiate(mindMissilePrefab, 
+            playerObject.transform.position, Quaternion.identity);
         mindMissiles.Add(extraMissile);
         return extraMissile;
     }
