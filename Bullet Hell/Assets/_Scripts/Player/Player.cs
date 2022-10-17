@@ -19,11 +19,12 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        characterStats = GameManager.Instance?.character;
+        characterStats = GameManager.Instance?.currentCharacter;
         GameManager.Instance.playerObject = this.gameObject;
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         spriteColor = spriteRenderer.color;
         mindMissile = new Attack_MindMissile(this, gameObject, mindMissilePrefab);
+        if (characterStats is not null) AssignStats();
     }
 
     private void Update()
@@ -60,5 +61,10 @@ public class Player : MonoBehaviour
             await Task.Yield();
         }
         canTakeDamage = true; 
+    }
+
+    private void AssignStats()
+    {
+
     }
 }

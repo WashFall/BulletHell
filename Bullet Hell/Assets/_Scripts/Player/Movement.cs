@@ -18,6 +18,7 @@ public class Movement : MonoBehaviour
         playerInput.Enable();
         playerInput.Actions.Move.performed += NormalizeMovement;
         playerInput.Actions.Move.canceled += NormalizeMovement;
+        playerSpeed = (float)GameManager.Instance?.currentCharacter.characterWalkingSpeed;
     }
 
     private void NormalizeMovement(InputAction.CallbackContext context)

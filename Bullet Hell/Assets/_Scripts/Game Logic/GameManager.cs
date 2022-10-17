@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using System.Linq;
 using static UnityEngine.Rendering.VirtualTexturing.Debugging;
 
 public class GameManager : MonoBehaviour
@@ -13,8 +14,8 @@ public class GameManager : MonoBehaviour
     public float points;
     public GameObject playerObject;
     public GameObject restartButton;
-    public ScriptableObject characterObject;
-    public Character character;
+    public List<Character> characterList = new List<Character>();
+    public Character currentCharacter;
     public List<GameObject> enemies = new List<GameObject>();
 
     private Color spriteColor;
@@ -31,8 +32,9 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
         }
-        //characterObject = ScriptableObject.CreateInstance("Character");
-        //character = characterObject.;
+
+        characterList = Resources.LoadAll<Character>("Characters").ToList();
+        currentCharacter = characterList[0];
     }
 
     private void Start()

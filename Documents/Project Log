@@ -27,3 +27,4 @@ Project Log: "Not Dead Yet"
    - I made the points that drop not collide with anything except the player.
    - I made character stats scriptable object class.
    - I broke Attack_MindMissile out of Monobehaviour.
+   - I made a resources folder, and load every character to GameManager.
