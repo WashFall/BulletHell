@@ -21,3 +21,7 @@ Project Log: "Not Dead Yet"
    - I made spawn rate of enemies connect to timer.
    - I added health to the player. When 0 the game ends.
    - I added a canvas with score and timer. Also a retry-button.
+
+2022-10-17
+   - I added a damage flash to player and a second of invincibility.
+   - I made the points that drop not collide with anything except the player.

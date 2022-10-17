@@ -34,7 +34,6 @@ public class Attack_MindMissile : MonoBehaviour
                 fireRateMultiplier = GameManager.Instance.points / 100;
             fireRate = 1 - fireRateMultiplier;
             StartCoroutine(nameof(FireMissile));
-            print(fireRate);
         }
     }
 

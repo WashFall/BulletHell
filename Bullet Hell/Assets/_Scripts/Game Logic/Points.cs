@@ -14,9 +14,16 @@ public class Points : MonoBehaviour
         {
             transform.position =
                 Vector3.Lerp(transform.position, 
-                GameManager.Instance.player.transform.position, 
+                GameManager.Instance.playerObject.transform.position, 
                 Time.deltaTime * speed);
             speed += 0.01f;
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!collision.gameObject.CompareTag("Player") || collision.isTrigger) return;
+        GameManager.Instance.points += value;
+        Destroy(this.gameObject);
     }
 }

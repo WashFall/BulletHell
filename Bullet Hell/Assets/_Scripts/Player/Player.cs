@@ -1,28 +1,51 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public delegate void PlayerTakeDamage();
-    public event PlayerTakeDamage playerTakeDamage;
+    public float health = 3;
+    private bool canTakeDamage = true;
+    private SpriteRenderer spriteRenderer;
+    private Color spriteColor;
 
     void Start()
     {
-        GameManager.Instance.player = this.gameObject;
+        GameManager.Instance.playerObject = this.gameObject;
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        spriteColor = spriteRenderer.color;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private async void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Point"))
+        if (collision.gameObject.CompareTag("Enemy") && canTakeDamage)
         {
-            GameManager.Instance.points += collision.gameObject.GetComponent<Points>().value;
-            Destroy(collision.gameObject);
+            StartCoroutine(nameof(TakeDamage));
+            canTakeDamage = false;
+            await InvincibilityTime();
         }
-        else if (collision.gameObject.CompareTag("Enemy"))
-        {
-            playerTakeDamage?.Invoke();
-        }
+    }
 
+    private IEnumerator TakeDamage()
+    {
+        spriteRenderer.color = Color.white;
+        yield return new WaitForSeconds(0.1f);
+        spriteRenderer.color = spriteColor;
+        health--;
+    }
+
+    private async Task InvincibilityTime()
+    {
+        float startTime = Time.time;
+        float currentTime = startTime;
+
+        while(currentTime < startTime + 1)
+        {
+            currentTime = Time.time;
+            await Task.Yield();
+        }
+        canTakeDamage = true; 
     }
 }

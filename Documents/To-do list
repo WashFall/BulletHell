@@ -8,9 +8,9 @@ Week 1 2022-10-10 - 2022-10-14
     - Finish a game loop. X
 
 Week 2 2022-10-17 - 2022-10-21
-    - Fix player damage event. 
+    - Fix player damage event. X
     - Add 2 more weapons. 
-    - Fix points colliding with enemies. 
+    - Fix points colliding with enemies. X
     - Fix proper weapon upgrades. 
     - Make character stats. 
     - Make enemy stats. 
