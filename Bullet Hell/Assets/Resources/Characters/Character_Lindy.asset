@@ -18,3 +18,5 @@ MonoBehaviour:
   characterPickUpRange: 2
   characterAttackSpeed: 1
   characterAttackRange: 5
+  characterBaseDamage: 1
+  characterProjectileSize: 1

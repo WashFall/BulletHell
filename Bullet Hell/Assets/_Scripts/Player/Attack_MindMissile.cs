@@ -10,12 +10,12 @@ public class Attack_MindMissile
 
     private float range = 5;
     private Player playerClass;
-    private float fireRate = 1;
+    private float baseFireRate = 1;
+    private float fireRate;
     private bool canShoot = true;
     private GameObject playerObject;
     private float amountOfMissiles = 30;
     private GameObject mindMissilePrefab;
-    private float fireRateMultiplier = 0;
 
     public Attack_MindMissile(Player playerClass, GameObject playerObject, GameObject mindMissile)
     {
@@ -42,9 +42,7 @@ public class Attack_MindMissile
         if (canShoot)
         {
             canShoot = false;
-            if (GameManager.Instance.points % 10 == 0)
-                fireRateMultiplier = GameManager.Instance.points / 100;
-            fireRate = 1 - fireRateMultiplier;
+            fireRate = baseFireRate * GameManager.Instance.currentCharacter.characterAttackSpeed;
             await FireMissile();
         }
     }

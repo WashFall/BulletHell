@@ -6,7 +6,8 @@ using UnityEngine;
 public class MindMissile : MonoBehaviour
 {
     public GameObject target;
-    float damage = 1;
+    float baseDamage = 1;
+    float damage;
     float speed = 5;
     Vector3 originalSize;
 
@@ -17,10 +18,8 @@ public class MindMissile : MonoBehaviour
 
     private void OnEnable()
     {
-        float pointAdjustment = GameManager.Instance.points / 30;
-
-        damage = 1 + pointAdjustment;
-        transform.localScale = originalSize * (1 + pointAdjustment);
+        damage = baseDamage * GameManager.Instance.currentCharacter.characterBaseDamage;
+        transform.localScale = originalSize * GameManager.Instance.currentCharacter.characterProjectileSize;
     }
 
     private void FixedUpdate()
