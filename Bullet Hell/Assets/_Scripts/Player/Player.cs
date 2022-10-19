@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -16,6 +17,7 @@ public class Player : MonoBehaviour
     private Character characterStats;
     private bool canTakeDamage = true;
     private SpriteRenderer spriteRenderer;
+    private CircleCollider2D pickUpTrigger;
 
     private List<Attacks> attacks = new List<Attacks>();
     private Attack_MindMissile mindMissile;
@@ -26,6 +28,9 @@ public class Player : MonoBehaviour
         GameManager.Instance.playerObject = this.gameObject;
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         spriteColor = spriteRenderer.color;
+        List<CircleCollider2D> colliders = GetComponents<CircleCollider2D>().ToList();
+        pickUpTrigger = colliders.Where(c => c.isTrigger).Single();
+        pickUpTrigger.radius = characterStats.characterPickUpRange;
         mindMissile = new Attack_MindMissile(this, gameObject, mindMissilePrefab);
         attacks.Add(mindMissile);
         if (characterStats is not null) AssignStats();

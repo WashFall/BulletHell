@@ -28,3 +28,8 @@ Project Log: "Not Dead Yet"
    - I made character stats scriptable object class.
    - I broke Attack_MindMissile out of Monobehaviour.
    - I made a resources folder, and load every character to GameManager.
+
+2022-10-19
+   - I made an abstract Attacks class for easy attack management.
+   - I made the stats assignment easier.
+   - I fixed the pick up radius assignment.

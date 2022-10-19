@@ -5,9 +5,8 @@ using UnityEngine;
 
 public class MindMissile : MonoBehaviour
 {
+    public Attack_MindMissile attacker;
     public GameObject target;
-    float baseDamage = 1;
-    float damage;
     float speed = 5;
     Vector3 originalSize;
 
@@ -18,7 +17,6 @@ public class MindMissile : MonoBehaviour
 
     private void OnEnable()
     {
-        damage = baseDamage * GameManager.Instance.currentCharacter.characterBaseDamage;
         transform.localScale = originalSize * GameManager.Instance.currentCharacter.characterProjectileSize;
     }
 
@@ -38,7 +36,7 @@ public class MindMissile : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!collision.CompareTag("Enemy")) return;
-        collision.gameObject.GetComponent<Enemy>().TakeDamage(damage);
+        collision.gameObject.GetComponent<Enemy>().TakeDamage(attacker.damage);
         gameObject.SetActive(false);
     }
 }

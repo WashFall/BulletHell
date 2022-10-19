@@ -17,7 +17,7 @@ MonoBehaviour:
   characterWalkingSpeed: 5
   characterPickUpRange: 2
   characterAttackSpeed: 1
-  characterAttackRange: 5
+  characterAttackRange: 1
   characterBaseDamage: 1
   characterProjectileSize: 1
   characterProjectileAmount: 1

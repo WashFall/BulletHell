@@ -35,6 +35,7 @@ public class Attack_MindMissile : Attacks
             GameObject missile = GameObject.Instantiate(mindMissilePrefab, 
                 playerObject.transform.position, Quaternion.identity);
             mindMissiles.Add(missile);
+            missile.GetComponent<MindMissile>().attacker = this;
             missile.SetActive(false);
         }
     }
