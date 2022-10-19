@@ -4,14 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class Attack_MindMissile 
+public class Attack_MindMissile : Attacks
 {
     public List<GameObject> mindMissiles = new List<GameObject>();
 
-    private float range = 5;
     private Player playerClass;
-    private float baseFireRate = 1;
-    private float fireRate;
     private bool canShoot = true;
     private GameObject playerObject;
     private float amountOfMissiles = 30;
@@ -24,6 +21,11 @@ public class Attack_MindMissile
         this.mindMissilePrefab = mindMissile;
         GenerateMissilePool();
         playerClass.updateDelegate += Update;
+        baseAttackRange = 5;
+        baseAttackSpeed = 1;
+        baseDamage = 1;
+        baseProjectileSize = 1;
+        baseProjectileAmount = 1;
     }
 
     void GenerateMissilePool()
@@ -42,7 +44,6 @@ public class Attack_MindMissile
         if (canShoot)
         {
             canShoot = false;
-            fireRate = baseFireRate * GameManager.Instance.currentCharacter.characterAttackSpeed;
             await FireMissile();
         }
     }
@@ -52,7 +53,7 @@ public class Attack_MindMissile
         float startTime = Time.time;
         float currentTime = startTime;
 
-        while(currentTime < startTime + fireRate)
+        while(currentTime < startTime + attackSpeed)
         {
             currentTime = Time.time;
             await Task.Yield();
@@ -64,7 +65,7 @@ public class Attack_MindMissile
 
         if(closestEnemies.Any())
         {
-            if (Vector2.Distance(playerObject.transform.position, closestEnemies[0].transform.position) < range)
+            if (Vector2.Distance(playerObject.transform.position, closestEnemies[0].transform.position) < attackRange)
             {
                 GameObject projectile = mindMissiles.FirstOrDefault(missile => !missile.gameObject.activeSelf);
 

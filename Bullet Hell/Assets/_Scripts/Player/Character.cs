@@ -15,5 +15,6 @@ public class Character : ScriptableObject
     public float characterAttackRange;
     public float characterBaseDamage;
     public float characterProjectileSize;
+    public float characterProjectileAmount;
     //public Attack characterStarterAttack;
 }

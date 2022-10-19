@@ -9,12 +9,15 @@ public class Player : MonoBehaviour
     public delegate void UpdateDelegate();
     public UpdateDelegate updateDelegate;
 
-    private Character characterStats;
     public float health = 3;
     public GameObject mindMissilePrefab;
+
+    private Color spriteColor;
+    private Character characterStats;
     private bool canTakeDamage = true;
     private SpriteRenderer spriteRenderer;
-    private Color spriteColor;
+
+    private List<Attacks> attacks = new List<Attacks>();
     private Attack_MindMissile mindMissile;
 
     void Start()
@@ -24,6 +27,7 @@ public class Player : MonoBehaviour
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         spriteColor = spriteRenderer.color;
         mindMissile = new Attack_MindMissile(this, gameObject, mindMissilePrefab);
+        attacks.Add(mindMissile);
         if (characterStats is not null) AssignStats();
     }
 
@@ -65,6 +69,13 @@ public class Player : MonoBehaviour
 
     private void AssignStats()
     {
-
+        foreach(var attack in attacks)
+        {
+            attack.attackSpeed = attack.baseAttackSpeed * characterStats.characterAttackSpeed;
+            attack.attackRange = attack.baseAttackRange * characterStats.characterAttackRange;
+            attack.damage = attack.baseDamage * characterStats.characterBaseDamage;
+            attack.projectileSize = attack.baseProjectileSize * characterStats.characterProjectileSize;
+            attack.projectileAmount = attack.baseProjectileAmount * characterStats.characterProjectileAmount;
+        }
     }
 }

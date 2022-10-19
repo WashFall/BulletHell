@@ -20,3 +20,4 @@ MonoBehaviour:
   characterAttackRange: 5
   characterBaseDamage: 1
   characterProjectileSize: 1
+  characterProjectileAmount: 1
