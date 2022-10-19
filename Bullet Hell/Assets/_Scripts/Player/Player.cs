@@ -30,7 +30,6 @@ public class Player : MonoBehaviour
         spriteColor = spriteRenderer.color;
         List<CircleCollider2D> colliders = GetComponents<CircleCollider2D>().ToList();
         pickUpTrigger = colliders.Where(c => c.isTrigger).Single();
-        pickUpTrigger.radius = characterStats.characterPickUpRange;
         mindMissile = new Attack_MindMissile(this, gameObject, mindMissilePrefab);
         attacks.Add(mindMissile);
         if (characterStats is not null) AssignStats();
@@ -82,5 +81,6 @@ public class Player : MonoBehaviour
             attack.projectileSize = attack.baseProjectileSize * characterStats.characterProjectileSize;
             attack.projectileAmount = attack.baseProjectileAmount * characterStats.characterProjectileAmount;
         }
+        pickUpTrigger.radius = characterStats.characterPickUpRange;
     }
 }

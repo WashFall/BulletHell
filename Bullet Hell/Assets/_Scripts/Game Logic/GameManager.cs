@@ -34,7 +34,8 @@ public class GameManager : MonoBehaviour
         }
 
         characterList = Resources.LoadAll<Character>("Characters").ToList();
-        currentCharacter = characterList[0];
+        currentCharacter = Instantiate(characterList[0]);
+        currentCharacter.characterPickUpRange = 10;
     }
 
     private void Start()
