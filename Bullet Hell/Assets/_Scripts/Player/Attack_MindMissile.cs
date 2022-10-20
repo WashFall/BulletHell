@@ -51,12 +51,10 @@ public class Attack_MindMissile : Attacks
 
     private async Task FireMissile()
     {
-        float startTime = Time.time;
-        float currentTime = startTime;
+        float endTime = Time.time + attackSpeed;
 
-        while(currentTime < startTime + attackSpeed)
+        while (Time.time < endTime)
         {
-            currentTime = Time.time;
             await Task.Yield();
         }
 

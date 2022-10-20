@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     public UpdateDelegate updateDelegate;
 
     public float health = 3;
+    public GameObject mindGyroPrefab;
     public GameObject mindMissilePrefab;
 
     private Color spriteColor;
@@ -20,6 +21,7 @@ public class Player : MonoBehaviour
     private CircleCollider2D pickUpTrigger;
 
     private List<Attacks> attacks = new List<Attacks>();
+    private Attack_MindGyro mindGyro;
     private Attack_MindMissile mindMissile;
 
     void Start()
@@ -31,7 +33,9 @@ public class Player : MonoBehaviour
         List<CircleCollider2D> colliders = GetComponents<CircleCollider2D>().ToList();
         pickUpTrigger = colliders.Where(c => c.isTrigger).Single();
         mindMissile = new Attack_MindMissile(this, gameObject, mindMissilePrefab);
+        mindGyro = new Attack_MindGyro(this, gameObject, mindGyroPrefab);
         attacks.Add(mindMissile);
+        attacks.Add(mindGyro);
         if (characterStats is not null) AssignStats();
     }
 

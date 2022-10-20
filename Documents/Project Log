@@ -33,3 +33,7 @@ Project Log: "Not Dead Yet"
    - I made an abstract Attacks class for easy attack management.
    - I made the stats assignment easier.
    - I fixed the pick up radius assignment.
+
+2022-10-20
+   - I made a new weapon; Mind Gyro.
+   
