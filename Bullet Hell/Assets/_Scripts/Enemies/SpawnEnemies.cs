@@ -15,6 +15,11 @@ public class SpawnEnemies : MonoBehaviour
         cameraWidth = Camera.main.aspect * (Camera.main.orthographicSize) + 1;
     }
 
+    private void Start()
+    {
+        player = GameManager.Instance.playerObject;
+    }
+
     void Update()
     {
         if (canSpawn)

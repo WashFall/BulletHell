@@ -4,7 +4,9 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.SceneManagement;
 using static UnityEngine.Rendering.VirtualTexturing.Debugging;
+using Cinemachine;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,7 +15,9 @@ public class GameManager : MonoBehaviour
     public float timer;
     public float points;
     public GameObject playerObject;
+    public GameObject playerObjectPrefab;
     public GameObject restartButton;
+    public GameObject playerCamera;
     public List<Character> characterList = new List<Character>();
     public Character currentCharacter;
     public List<GameObject> enemies = new List<GameObject>();
@@ -35,12 +39,9 @@ public class GameManager : MonoBehaviour
 
         characterList = Resources.LoadAll<Character>("Characters").ToList();
         currentCharacter = Instantiate(characterList[0]);
-        currentCharacter.characterPickUpRange = 10;
-    }
-
-    private void Start()
-    {
+        playerObject = Instantiate(playerObjectPrefab, Vector3.zero, Quaternion.identity);
         playerClass = playerObject.GetComponent<Player>();
+        playerCamera.GetComponent<CinemachineVirtualCamera>().Follow = playerObject.transform;
     }
 
     private void FixedUpdate()

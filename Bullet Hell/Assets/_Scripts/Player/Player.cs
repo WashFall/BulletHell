@@ -10,6 +10,9 @@ public class Player : MonoBehaviour
     public delegate void UpdateDelegate();
     public UpdateDelegate updateDelegate;
 
+    public delegate void DisableDelegate();
+    public DisableDelegate disableDelegate;
+
     public float health = 3;
     public GameObject mindGyroPrefab;
     public GameObject mindMissilePrefab;
@@ -42,6 +45,11 @@ public class Player : MonoBehaviour
     private void Update()
     {
         updateDelegate?.Invoke();
+    }
+
+    private void OnDisable()
+    {
+        disableDelegate?.Invoke();
     }
 
     private async void OnCollisionEnter2D(Collision2D collision)

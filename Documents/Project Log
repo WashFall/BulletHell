@@ -37,3 +37,11 @@ Project Log: "Not Dead Yet"
 2022-10-20
    - I made a new weapon; Mind Gyro.
    
+2022-10-21
+   - I fixed the gyro distribution algorithm.
+
+2022-10-23
+   - I made the gyros be able to activate and deactivate on a timer.
+   - I fixed some issues with async/await that led to errors.
+   - I made the gamemanager spawn the player in the scene.
+   
