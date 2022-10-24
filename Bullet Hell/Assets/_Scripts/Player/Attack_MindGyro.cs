@@ -14,7 +14,7 @@ public class Attack_MindGyro : Attacks
     private GameObject playerObject;
     private Player playerClass;
     private GameObject mindGyroPrefab;
-    private float amountOfGyros = 7;
+    private float amountOfGyros = 5;
     private bool canShoot = true;
     private float gyroDownTime;
     private float gyroDeploymentTime;

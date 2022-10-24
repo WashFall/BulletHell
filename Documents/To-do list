@@ -9,8 +9,14 @@ Week 1 2022-10-10 - 2022-10-14
 
 Week 2 2022-10-17 - 2022-10-21
     - Fix player damage event. X
-    - Add 2 more weapons. >
+    - Add 2 more weapons. >-
     - Fix points colliding with enemies. X
-    - Fix proper weapon upgrades. 
+    - Fix proper weapon upgrades. --
     - Make character stats. X
+    - Make enemy stats. --
+
+Week 3 2022-10-24 - 2022-10-28
+    - Add 2 more weapons. 
+    - Fix proper weapon upgrades.
     - Make enemy stats. 
+    - Make player leveling. 

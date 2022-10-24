@@ -45,3 +45,5 @@ Project Log: "Not Dead Yet"
    - I fixed some issues with async/await that led to errors.
    - I made the gamemanager spawn the player in the scene.
    
+2022-10-24
+   - I have started research on Unity Job system.
