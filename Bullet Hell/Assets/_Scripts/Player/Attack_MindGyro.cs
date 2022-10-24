@@ -24,7 +24,7 @@ public class Attack_MindGyro : Attacks
         this.playerObject = playerObject;
         this.playerClass = playerClass;
         this.mindGyroPrefab = mindGyro;
-        GenerateGyroPool();
+        GenerateGyroPool(amountOfGyros);
         playerClass.updateDelegate += Update;
         playerClass.disableDelegate += Disable;
         baseAttackRange = 5;
@@ -33,13 +33,18 @@ public class Attack_MindGyro : Attacks
         baseProjectileSize = 1;
         baseProjectileAmount = 1;
         gyroDownTime = 2;
-        gyroDeploymentTime = 360 / amountOfGyros * Mathf.Deg2Rad / (amountOfGyros / (amountOfGyros / 2) + 1);
+        CalculateGyroDeployment(amountOfGyros);
         cancellationTokenSource = new CancellationTokenSource();
     }
 
-    private void GenerateGyroPool()
+    private void CalculateGyroDeployment(float amount)
     {
-        for(int i = 0; i < amountOfGyros; i++)
+        gyroDeploymentTime = 360 / amount * Mathf.Deg2Rad / (amount / (amount / 2) + 1);
+    }
+
+    private void GenerateGyroPool(float amount)
+    {
+        for(int i = 0; i < amount; i++)
         {
             GameObject gyro = GameObject.Instantiate(mindGyroPrefab, 
                 playerObject.transform.position, Quaternion.identity);
@@ -60,7 +65,12 @@ public class Attack_MindGyro : Attacks
         if (canShoot)
         {
             canShoot = false;
-
+            float checkIfNewGyros = amountOfGyros + projectileAmount - 1;
+            if (checkIfNewGyros > mindGyros.Count) 
+            {
+                GenerateGyroPool(projectileAmount - 1);
+                CalculateGyroDeployment(mindGyros.Count);
+            }
             await BufferTimer(gyroDownTime);
 
             foreach(var gyro in mindGyros)

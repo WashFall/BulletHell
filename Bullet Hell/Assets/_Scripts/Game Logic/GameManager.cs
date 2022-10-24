@@ -12,6 +12,12 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
+    public delegate void LevelUp();
+    public static LevelUp levelUp;
+
+    public float level = 0;
+    public float nextLevelAmount = 5;
+
     public float timer;
     public float points;
     public GameObject playerObject;
@@ -47,6 +53,13 @@ public class GameManager : MonoBehaviour
     private void FixedUpdate()
     {
         timer = Time.timeSinceLevelLoad;
+
+        if(points >= nextLevelAmount)
+        {
+            level++;
+            nextLevelAmount += 10;
+            levelUp?.Invoke();
+        }
 
         if(timer > 60 || playerClass.health <= 0)
         {
