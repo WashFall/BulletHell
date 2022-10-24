@@ -15,7 +15,7 @@ public class Attack_MindGyro : Attacks
     private Player playerClass;
     private GameObject mindGyroPrefab;
     private float amountOfGyros = 5;
-    private bool canShoot = true;
+    private bool canShoot = false;
     private float gyroDownTime;
     private float gyroDeploymentTime;
 
@@ -125,6 +125,23 @@ public class Attack_MindGyro : Attacks
         while (Time.time < endTime && !cancellationTokenSource.IsCancellationRequested)
         {
             await Task.Yield();
+        }
+    }
+
+    public override void AttackLevelUp()
+    {
+        base.AttackLevelUp();
+        switch (attackLevel)
+        {
+            case 1:
+                canShoot = true;
+                break;
+            case 2:
+                amountOfGyros++;
+                break;
+            case 3:
+                projectileSize *= 1.5f;
+                break;
         }
     }
 }

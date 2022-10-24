@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
 
     public float timer;
     public float points;
+    public Player playerClass;
     public GameObject playerObject;
     public GameObject playerObjectPrefab;
     public GameObject restartButton;
@@ -29,7 +30,6 @@ public class GameManager : MonoBehaviour
     public List<GameObject> enemies = new List<GameObject>();
 
     private Color spriteColor;
-    private Player playerClass;
     private SpriteRenderer playerSpriteRenderer;
 
     private void Awake()

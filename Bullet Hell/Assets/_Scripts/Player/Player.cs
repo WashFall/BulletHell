@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     public float health = 3;
     public GameObject mindGyroPrefab;
     public GameObject mindMissilePrefab;
+    public List<Attacks> attacks = new List<Attacks>();
 
     private Color spriteColor;
     private Character characterStats;
@@ -23,7 +24,6 @@ public class Player : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private CircleCollider2D pickUpTrigger;
 
-    private List<Attacks> attacks = new List<Attacks>();
     private Attack_MindGyro mindGyro;
     private Attack_MindMissile mindMissile;
 

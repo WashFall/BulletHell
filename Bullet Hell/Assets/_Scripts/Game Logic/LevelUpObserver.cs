@@ -8,6 +8,7 @@ public class LevelUpObserver : MonoBehaviour
 {
     public GameObject levelUpPanel;
     public GameObject weaponImagePrefab;
+
     private Rect panelRect;
     private float panelWidth;
 
@@ -37,5 +38,18 @@ public class LevelUpObserver : MonoBehaviour
             newImage.transform.localPosition = new Vector3(0 - (panelWidth / 3) * i, 0, 0);
         }
         Time.timeScale = 0f;
+    }
+
+    public void AttackLevelUp(string attackName)
+    {
+        switch (attackName)
+        {
+            case "MindMissile":
+                GameManager.Instance.playerClass.attacks[0].AttackLevelUp();
+                break;
+            case "MindGyro":
+                GameManager.Instance.playerClass.attacks[1].AttackLevelUp();
+                break;
+        }
     }
 }

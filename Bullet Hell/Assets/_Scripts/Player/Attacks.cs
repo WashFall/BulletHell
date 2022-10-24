@@ -11,4 +11,11 @@ public abstract class Attacks
     public float damage;
     public float projectileSize;
     public float projectileAmount;
+
+    public float attackLevel = 0;
+
+    public virtual void AttackLevelUp()
+    {
+        attackLevel++;
+    }
 }
