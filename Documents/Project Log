@@ -51,3 +51,4 @@ Project Log: "Not Dead Yet"
 
 2022-10-24
    - I have made the attack cards display attacks and level stats.
+   - I made the cards work. When clicked, the specified attack is upgraded.
