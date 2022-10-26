@@ -8,6 +8,11 @@ public class Points : MonoBehaviour
     public bool isInRange = false;
     private float speed = 7;
 
+    private void Start()
+    {
+        value = Random.Range(1, 3);
+    }
+
     private void Update()
     {
         if (isInRange)
