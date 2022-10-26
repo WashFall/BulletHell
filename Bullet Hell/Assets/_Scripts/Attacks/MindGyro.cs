@@ -34,7 +34,8 @@ public class MindGyro : MonoBehaviour
     {
         angle = 0;
         circleRadius = GameManager.Instance.currentCharacter.characterPickUpRange;
-        transform.localScale = originalSize * GameManager.Instance.currentCharacter.characterProjectileSize;
+        if(attacker is not null)
+            transform.localScale = originalSize * attacker.projectileSize;
         transform.position = player.transform.localPosition;
     }
 

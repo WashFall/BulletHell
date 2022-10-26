@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
 
 public class LevelUpObserver : MonoBehaviour
 {
@@ -43,18 +42,22 @@ public class LevelUpObserver : MonoBehaviour
             thisCard.levelUpObserver = this;
             thisCard.SetTexts();
         }
-        Time.timeScale = 0f;
+        Time.timeScale = 0;
     }
 
     public void AttackLevelUp(string attackName)
     {
         switch (attackName)
         {
-            case "MindMissile":
+            case "Mind Missile":
                 GameManager.Instance.playerClass.attacks[0].AttackLevelUp();
+                levelUpPanel.SetActive(false);
+                Time.timeScale = 1;
                 break;
-            case "MindGyro":
+            case "Mind Gyro":
                 GameManager.Instance.playerClass.attacks[1].AttackLevelUp();
+                levelUpPanel.SetActive(false);
+                Time.timeScale = 1;
                 break;
         }
     }

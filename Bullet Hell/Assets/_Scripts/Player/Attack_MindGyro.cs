@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Unity.VisualScripting;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 public class Attack_MindGyro : Attacks
@@ -138,7 +140,7 @@ public class Attack_MindGyro : Attacks
                 canShoot = true;
                 break;
             case 2:
-                amountOfGyros++;
+                projectileAmount++;
                 break;
             case 3:
                 projectileSize *= 1.5f;
@@ -154,6 +156,10 @@ public class Attack_MindGyro : Attacks
             case 0:
                 return ("Activate the Mind Gyro power!");
             case 1:
+                return ("Add one Gyro.");
+            case 2:
+                return ("Larger Gyros.");
+            case 3:
                 return ("Add one Gyro.");
         }
         return ("error lol");

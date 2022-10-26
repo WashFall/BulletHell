@@ -96,11 +96,11 @@ public class Attack_MindMissile : Attacks
                 canShoot = true;
                 break;
             case 2:
-                baseAttackSpeed = 0.9f;
+                baseAttackSpeed = 0.8f;
                 playerClass.AssignStats();
                 break;
             case 3:
-                projectileSize *= 1.5f;
+                baseProjectileSize *= 1.5f;
                 playerClass.AssignStats();
                 break;
         }
@@ -113,6 +113,10 @@ public class Attack_MindMissile : Attacks
             case 0:
                 return ("Activate the Mind Missile power!");
             case 1:
+                return ("Higher attack speed.");
+            case 2:
+                return ("Larger Missiles.");
+            case 3:
                 return ("Higher attack speed.");
         }
         return ("error lol");

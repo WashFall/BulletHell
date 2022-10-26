@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class AttackLevelCard : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class AttackLevelCard : MonoBehaviour
         attackNameText = transform.GetChild(0).gameObject;
         attackLevelText = transform.GetChild(1).gameObject;
         attackUpgradeText = transform.GetChild(2).gameObject;
+        GetComponent<Button>().onClick.AddListener(LevelUpAttack);
     }
 
     public void SetTexts()
@@ -22,8 +24,8 @@ public class AttackLevelCard : MonoBehaviour
         attackLevelText.GetComponent<TMP_Text>().text = (attack.attackLevel + 1).ToString();
         attackUpgradeText.GetComponent<TMP_Text>().text = attack.GetUpgradeText(attack.attackLevel);
     }
-    void Update()
+    private void LevelUpAttack()
     {
-
+        levelUpObserver.AttackLevelUp(attack.name);
     }
 }

@@ -17,7 +17,8 @@ public class MindMissile : MonoBehaviour
 
     private void OnEnable()
     {
-        transform.localScale = originalSize * GameManager.Instance.currentCharacter.characterProjectileSize;
+        if(attacker is not null)
+            transform.localScale = originalSize * attacker.projectileSize;
     }
 
     private void FixedUpdate()
