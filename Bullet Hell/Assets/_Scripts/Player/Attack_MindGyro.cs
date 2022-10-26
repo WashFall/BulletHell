@@ -35,6 +35,7 @@ public class Attack_MindGyro : Attacks
         gyroDownTime = 2;
         CalculateGyroDeployment(amountOfGyros);
         cancellationTokenSource = new CancellationTokenSource();
+        name = "Mind Gyro";
     }
 
     private void CalculateGyroDeployment(float amount)
@@ -141,7 +142,20 @@ public class Attack_MindGyro : Attacks
                 break;
             case 3:
                 projectileSize *= 1.5f;
+                playerClass.AssignStats();
                 break;
         }
+    }
+
+    public override string GetUpgradeText(float level)
+    {
+        switch (level)
+        {
+            case 0:
+                return ("Activate the Mind Gyro power!");
+            case 1:
+                return ("Add one Gyro.");
+        }
+        return ("error lol");
     }
 }

@@ -1,5 +1,7 @@
 public abstract class Attacks
 {
+    public string name;
+
     public float baseAttackSpeed;
     public float baseAttackRange;
     public float baseDamage;
@@ -17,5 +19,10 @@ public abstract class Attacks
     public virtual void AttackLevelUp()
     {
         attackLevel++;
+    }
+
+    public virtual string GetUpgradeText(float level)
+    {
+        return "";
     }
 }

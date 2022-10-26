@@ -26,6 +26,8 @@ public class Attack_MindMissile : Attacks
         baseDamage = 1;
         baseProjectileSize = 1;
         baseProjectileAmount = 1;
+        name = "Mind Missile";
+        attackLevel = 1;
     }
 
     void GenerateMissilePool()
@@ -84,5 +86,35 @@ public class Attack_MindMissile : Attacks
             playerObject.transform.position, Quaternion.identity);
         mindMissiles.Add(extraMissile);
         return extraMissile;
+    }
+    public override void AttackLevelUp()
+    {
+        base.AttackLevelUp();
+        switch (attackLevel)
+        {
+            case 1:
+                canShoot = true;
+                break;
+            case 2:
+                baseAttackSpeed = 0.9f;
+                playerClass.AssignStats();
+                break;
+            case 3:
+                projectileSize *= 1.5f;
+                playerClass.AssignStats();
+                break;
+        }
+    }
+
+    public override string GetUpgradeText(float level)
+    {
+        switch (level)
+        {
+            case 0:
+                return ("Activate the Mind Missile power!");
+            case 1:
+                return ("Higher attack speed.");
+        }
+        return ("error lol");
     }
 }

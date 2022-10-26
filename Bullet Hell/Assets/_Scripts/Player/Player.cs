@@ -83,7 +83,7 @@ public class Player : MonoBehaviour
         canTakeDamage = true; 
     }
 
-    private void AssignStats()
+    public void AssignStats()
     {
         foreach(var attack in attacks)
         {

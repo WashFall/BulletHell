@@ -11,12 +11,14 @@ public class LevelUpObserver : MonoBehaviour
 
     private Rect panelRect;
     private float panelWidth;
+    private List<Attacks> attacks;
 
     private void Awake()
     {
         panelRect = levelUpPanel.GetComponent<RectTransform>().rect;
         panelWidth = panelRect.width;
         levelUpPanel.SetActive(false);
+        attacks = GameManager.Instance.playerClass.attacks;
     }
 
     private void OnEnable()
@@ -36,6 +38,10 @@ public class LevelUpObserver : MonoBehaviour
         {
             GameObject newImage = Instantiate(weaponImagePrefab, levelUpPanel.transform);
             newImage.transform.localPosition = new Vector3(0 - (panelWidth / 3) * i, 0, 0);
+            AttackLevelCard thisCard = newImage.AddComponent<AttackLevelCard>();
+            thisCard.attack = attacks[Random.Range(0, attacks.Count)];
+            thisCard.levelUpObserver = this;
+            thisCard.SetTexts();
         }
         Time.timeScale = 0f;
     }
