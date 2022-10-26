@@ -1438,6 +1438,7 @@ MonoBehaviour:
   nextLevelAmount: 5
   timer: 0
   points: 0
+  playerClass: {fileID: 0}
   playerObject: {fileID: 0}
   playerObjectPrefab: {fileID: 3983258270700902162, guid: 542aa46dc3e8f6b448d39ab760f882a0, type: 3}
   restartButton: {fileID: 806717808}

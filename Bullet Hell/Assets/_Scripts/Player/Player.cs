@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     public float health = 3;
     public GameObject mindGyroPrefab;
     public GameObject mindMissilePrefab;
+    public GameObject mindFirePrefab;
     public List<Attacks> attacks = new List<Attacks>();
 
     private Color spriteColor;
@@ -26,6 +27,7 @@ public class Player : MonoBehaviour
 
     private Attack_MindGyro mindGyro;
     private Attack_MindMissile mindMissile;
+    private Attack_MindFire mindFire;
 
     void Start()
     {
@@ -37,8 +39,10 @@ public class Player : MonoBehaviour
         pickUpTrigger = colliders.Where(c => c.isTrigger).Single();
         mindMissile = new Attack_MindMissile(this, gameObject, mindMissilePrefab);
         mindGyro = new Attack_MindGyro(this, gameObject, mindGyroPrefab);
+        mindFire = new Attack_MindFire(this, gameObject, mindFirePrefab);
         attacks.Add(mindMissile);
         attacks.Add(mindGyro);
+        attacks.Add(mindFire);
         if (characterStats is not null) AssignStats();
     }
 
