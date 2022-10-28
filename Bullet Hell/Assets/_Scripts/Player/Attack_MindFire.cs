@@ -27,7 +27,7 @@ public class Attack_MindFire : Attacks
         GenerateFirePool(amountOfFires);
         name = "Mind Fire";
         attackLevel = 0;
-        baseAttackSpeed = 2;
+        baseAttackSpeed = 3;
         baseAttackRange = 1;
         baseDamage = 2;
         baseProjectileSize = 1;
@@ -77,12 +77,27 @@ public class Attack_MindFire : Attacks
         {
             for (int i = 0; i < projectileAmount; i++)
             {
-                GameObject fire = mindFires.First(fire => !fire.gameObject.activeSelf);
+                GameObject fire = mindFires.FirstOrDefault(fire => !fire.gameObject.activeSelf);
+
+                if (fire is null)
+                    fire = ExtraFireForPool();
+
                 fire.transform.position = playerClass.transform.position;
                 fire.SetActive(true);
                 canShoot = true;
             }
         }
+    }
+
+    private GameObject ExtraFireForPool()
+    {
+        GameObject extraFire = GameObject.Instantiate(mindFirePrefab,
+            playerObject.transform.position, Quaternion.identity);
+        mindFires.Add(extraFire);
+        extraFire.GetComponent<MindFire>().playerObject = playerObject;
+        extraFire.GetComponent<MindFire>().attacker = this;
+        extraFire.SetActive(false);
+        return extraFire;
     }
 
     public override void AttackLevelUp()

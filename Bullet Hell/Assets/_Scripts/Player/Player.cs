@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
+using System;
 
 public class Player : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class Player : MonoBehaviour
     public delegate void DisableDelegate();
     public DisableDelegate disableDelegate;
 
-    public float health = 5;
+    public float health = 3;
     public GameObject mindGyroPrefab;
     public GameObject mindMissilePrefab;
     public GameObject mindFirePrefab;
@@ -43,6 +44,14 @@ public class Player : MonoBehaviour
         attacks.Add(mindMissile);
         attacks.Add(mindGyro);
         attacks.Add(mindFire);
+        foreach(Attacks attack in attacks)
+        {
+            if(characterStats.characterStarterAttack == attack.name)
+            {
+                attack.AttackLevelUp();
+            }
+        }
+        health = characterStats.characterHealth;
         if (characterStats is not null) AssignStats();
     }
 
@@ -76,12 +85,10 @@ public class Player : MonoBehaviour
 
     private async Task InvincibilityTime()
     {
-        float startTime = Time.time;
-        float currentTime = startTime;
+        float endTime = Time.time + 1;
 
-        while(currentTime < startTime + 1)
+        while(Time.time > endTime)
         {
-            currentTime = Time.time;
             await Task.Yield();
         }
         canTakeDamage = true; 

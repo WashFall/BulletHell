@@ -9,7 +9,7 @@ public class Attack_MindMissile : Attacks
     public List<GameObject> mindMissiles = new List<GameObject>();
 
     private Player playerClass;
-    private bool canShoot = true;
+    private bool canShoot = false;
     private GameObject playerObject;
     private float amountOfMissiles = 30;
     private GameObject mindMissilePrefab;
@@ -27,7 +27,7 @@ public class Attack_MindMissile : Attacks
         baseProjectileSize = 1;
         baseProjectileAmount = 1;
         name = "Mind Missile";
-        attackLevel = 1;
+        attackLevel = 0;
     }
 
     void GenerateMissilePool()

@@ -68,13 +68,14 @@ public class Attack_MindGyro : Attacks
         if (canShoot)
         {
             canShoot = false;
+            await BufferTimer(gyroDownTime);
+
             float checkIfNewGyros = amountOfGyros + projectileAmount - 1;
             if (checkIfNewGyros > mindGyros.Count) 
             {
                 GenerateGyroPool(projectileAmount - 1);
                 CalculateGyroDeployment(mindGyros.Count);
             }
-            await BufferTimer(gyroDownTime);
 
             foreach(var gyro in mindGyros)
             {

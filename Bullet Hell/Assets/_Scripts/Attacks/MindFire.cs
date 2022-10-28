@@ -9,7 +9,7 @@ public class MindFire : MonoBehaviour
     public Attack_MindFire attacker;
 
     private Vector2 originalSize;
-    private float speed = 5;
+    private float speed = 7;
     private Rigidbody2D rigidBody;
     private float travelDistance;
     private float cameraWidth;
