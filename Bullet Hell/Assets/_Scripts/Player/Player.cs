@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     public delegate void DisableDelegate();
     public DisableDelegate disableDelegate;
 
-    public float health = 3;
+    public float health = 5;
     public GameObject mindGyroPrefab;
     public GameObject mindMissilePrefab;
     public GameObject mindFirePrefab;

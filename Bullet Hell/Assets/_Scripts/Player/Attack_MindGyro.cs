@@ -140,7 +140,8 @@ public class Attack_MindGyro : Attacks
                 canShoot = true;
                 break;
             case 2:
-                projectileAmount++;
+                baseProjectileAmount++;
+                playerClass.AssignStats();
                 break;
             case 3:
                 baseProjectileSize *= 1.5f;

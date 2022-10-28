@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
             levelUp?.Invoke();
         }
 
-        if(timer > 60 || playerClass.health <= 0)
+        if(timer > 120 || playerClass.health <= 0)
         {
             Time.timeScale = 0;
             restartButton.SetActive(true);

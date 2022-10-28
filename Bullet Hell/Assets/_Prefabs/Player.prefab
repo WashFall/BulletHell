@@ -182,3 +182,4 @@ MonoBehaviour:
   health: 3
   mindGyroPrefab: {fileID: 565605070271510006, guid: 1148ecb0af69d084aa33f7523fe97b03, type: 3}
   mindMissilePrefab: {fileID: 5702438710313046666, guid: 3a42607f9f297a14680a7ed4c280bd79, type: 3}
+  mindFirePrefab: {fileID: 1955328066020300336, guid: 4e2499f28be3b5b4992b90c012322461, type: 3}

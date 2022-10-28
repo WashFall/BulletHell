@@ -59,6 +59,11 @@ public class LevelUpObserver : MonoBehaviour
                 levelUpPanel.SetActive(false);
                 Time.timeScale = 1;
                 break;
+            case "Mind Fire":
+                GameManager.Instance.playerClass.attacks[2].AttackLevelUp();
+                levelUpPanel.SetActive(false);
+                Time.timeScale = 1;
+                break;
         }
     }
 }
