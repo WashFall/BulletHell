@@ -58,3 +58,7 @@ Project Log: "Not Dead Yet"
    - I finished the Mind Fire attack.
    - Changed camera size and Mind Fire pooling.
    - Added new character "Andy".
+
+2022-11-14
+   - Fixed the level cards, they now display different attacks.
+   - Fixed amount of xp needed for level ups.
