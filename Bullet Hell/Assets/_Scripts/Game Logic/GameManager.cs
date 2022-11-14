@@ -57,8 +57,9 @@ public class GameManager : MonoBehaviour
         if(points >= nextLevelAmount)
         {
             level++;
-            nextLevelAmount += 10;
+            nextLevelAmount += (10 * level);
             levelUp?.Invoke();
+            print(nextLevelAmount);
         }
 
         if(timer > 120 || playerClass.health <= 0)

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +12,7 @@ public class LevelUpObserver : MonoBehaviour
     private Rect panelRect;
     private float panelWidth;
     private List<Attacks> attacks;
+    private List<Attacks> levelUpAttacks;
 
     private void Awake()
     {
@@ -33,12 +35,14 @@ public class LevelUpObserver : MonoBehaviour
     private void LevelUp()
     {
         levelUpPanel.SetActive(true);
+        levelUpAttacks = new List<Attacks>();
         for(int i = -1; i < 2; i++)
         {
             GameObject newImage = Instantiate(weaponImagePrefab, levelUpPanel.transform);
             newImage.transform.localPosition = new Vector3(0 - (panelWidth / 3) * i, 0, 0);
             AttackLevelCard thisCard = newImage.AddComponent<AttackLevelCard>();
-            thisCard.attack = attacks[Random.Range(0, attacks.Count)];
+            thisCard.attack = RandomAttack();
+            levelUpAttacks.Add(thisCard.attack);
             thisCard.levelUpObserver = this;
             thisCard.SetTexts();
         }
@@ -65,5 +69,16 @@ public class LevelUpObserver : MonoBehaviour
                 Time.timeScale = 1;
                 break;
         }
+    }
+
+    private Attacks RandomAttack()
+    {
+        Attacks randomAttack = attacks[Random.Range(0, attacks.Count)];
+        if (levelUpAttacks.Contains(randomAttack))
+        {
+            List<Attacks> unusedAttacks = attacks.Except(levelUpAttacks).ToList();
+            randomAttack = unusedAttacks[Random.Range(0, unusedAttacks.Count)];
+        }
+        return randomAttack;
     }
 }
